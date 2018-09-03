@@ -16,7 +16,6 @@ function getRepoContributors(repoOwner, repoName, cb) {
 
   request(options, function(err, res, body) {
     var info = JSON.parse(body);
-    //console.log(avatarurl)
     cb(err, info);
   });
 
@@ -42,6 +41,6 @@ getRepoContributors(args[0], args[1], function(err, result) {
     console.log("Result:", result);
     result.forEach(function(x){
       downloadImageByURL(x.avatar_url, `avatars/${x.login}.jpg`);
-    })
+    });
   }
 });
