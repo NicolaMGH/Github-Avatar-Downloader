@@ -13,14 +13,9 @@ function getRepoContributors(repoOwner, repoName, cb) {
     }
   };
 
-
   request(options, function(err, res, body) {
     var info = JSON.parse(body);
-    var avatarurl = [];
-    info.forEach(function(x){
-      avatarurl.push(x.avatar_url);
-    })
-    console.log(avatarurl)
+    //console.log(avatarurl)
     cb(err, info);
   });
 
@@ -40,5 +35,8 @@ function downloadImageByURL(url, filePath) {
 
 getRepoContributors("jquery", "jquery", function(err, result) {
   console.log("Errors:", err);
-  //console.log("Result:", result);
+  console.log("Result:", result);
+  result.forEach(function(x){
+    downloadImageByURL(x.avatar_url, `avatars/${x.login}.jpg`);
+  })
 });
