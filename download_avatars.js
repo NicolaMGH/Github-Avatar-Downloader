@@ -35,9 +35,13 @@ function downloadImageByURL(url, filePath) {
 
 
 getRepoContributors(args[0], args[1], function(err, result) {
-  console.log("Errors:", err);
-  console.log("Result:", result);
-  result.forEach(function(x){
-    downloadImageByURL(x.avatar_url, `avatars/${x.login}.jpg`);
-  })
+  if (args[0] || args[1] === undefined){
+    console.log("Please enter two arguments!")
+  } else {
+    console.log("Errors:", err);
+    console.log("Result:", result);
+    result.forEach(function(x){
+      downloadImageByURL(x.avatar_url, `avatars/${x.login}.jpg`);
+    })
+  }
 });
