@@ -3,6 +3,7 @@ var token = require("./secrets");
 var fs = require("fs");
 var args = process.argv.slice(2);
 
+
 console.log("Welcome to the GitHub Avatar Downloader!");
 
 function getRepoContributors(repoOwner, repoName, cb) {
@@ -15,7 +16,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
   };
 
   request(options, function(err, res, body) {
-    var info = JSON.parse(body);
+    const info = JSON.parse(body);
     cb(err, info);
   });
 
@@ -34,8 +35,8 @@ function downloadImageByURL(url, filePath) {
 
 
 getRepoContributors(args[0], args[1], function(err, result) {
-  if (args[0] || args[1] === undefined){
-    console.log("Please enter two arguments!")
+  if (args[0] === undefined || args[1] === undefined){
+    console.log("Please enter two arguments!");
   } else {
     console.log("Errors:", err);
     console.log("Result:", result);
